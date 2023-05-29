@@ -1,6 +1,6 @@
 {
   "name": "make-it-look-nice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pretty format clipboard content",
   "main": "make-it-look-nice",
   "bin": {
