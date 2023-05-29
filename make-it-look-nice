@@ -1,0 +1,44 @@
+#! /usr/bin/env node
+
+
+async function main () {
+	const clipboard = (await import('clipboardy')).default;
+	
+	function result (x) {
+		clipboard.writeSync(x);
+		console.log(x);
+	}
+
+	let raw = clipboard.readSync();
+	
+	try {
+		let json = JSON.parse(raw);
+		result(JSON.stringify(json,null,4));
+	}
+	catch (err) {
+		if (raw.match(/\\[bfnrt"]/)) {
+			result(raw
+				.replace(/^['"]/,'')
+				.replace(/['"]$/,'')
+				.replace(/\\\\/g,'\\')
+				.replace(/\\b/g,'\b')
+				.replace(/\\f/g,'\f')
+				.replace(/\\n/g,'\n')
+				.replace(/\\r/g,'\r')
+				.replace(/\\t/g,'\t')
+				.replace(/\\/g,'')
+			);
+			return;
+		}
+		if (raw.match(/.+=.+&/)) {
+			result(raw
+				.split('&')
+				.map(x=>decodeURIComponent(x))
+				.join('\n')
+			);
+			return;
+		}
+	}
+}
+
+main();
