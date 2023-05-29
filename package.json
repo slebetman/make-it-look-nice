@@ -1,13 +1,17 @@
 {
   "name": "make-it-look-nice",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Pretty format clipboard content",
+  "main": "make-it-look-nice",
+  "bin": {
+  	"make-it-look-nice": "./make-it-look-nice"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "repository":"https://github.com/slebetman/make-it-look-nice",
+  "author": "slebetman@gmail.com",
+  "license": "BSD-2-Clause",
   "dependencies": {
     "clipboardy": "^3.0.0"
   }
